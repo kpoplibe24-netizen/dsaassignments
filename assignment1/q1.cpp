@@ -7,7 +7,6 @@ int main() {
     int choice;
 
     while(choice!=6) {
-        cout << "\n----- MENU -----\n";
         cout << "1. CREATE\n";
         cout << "2. DISPLAY\n";
         cout << "3. INSERT\n";
@@ -24,54 +23,38 @@ int main() {
             cout << "Enter " << n << " elements: ";
             for (int i = 0; i < n; i++) {
                 cin >> arr[i];
-            }
-            break;
-        }
+            break;}
 
         case 2: { 
             cout << "Array elements are: ";
             for (int i = 0; i < n; i++) {
-                cout << arr[i] << " ";
-            }
+                cout << arr[i] << " ";}
             cout << endl;
-            break;
-        }
+            break;}
 
         case 3: { 
             int pos, val;
-            cout << "Enter position (0-based index): ";
+            cout << "Enter position: ";
             cin >> pos;
             cout << "Enter value: ";
             cin >> val;
-
-            if (pos < 0 || pos > n) {
-                cout << "Invalid position!" << endl;
-            } else {
                 for (int i = n; i > pos; i--) {
                     arr[i] = arr[i-1];
                 }
                 arr[pos] = val;
                 n++;
-                cout << "Element inserted." << endl;
-            }
-            break;
-        }
+                cout << "Element inserted." << endl; }
+            break; }
 
         case 4: {
             int pos;
             cout << "Enter position (0-based index): ";
-            cin >> pos;
-            if (pos < 0 || pos >= n) {
-                cout << "Invalid position!" << endl;
-            } else {
                 for (int i = pos; i < n-1; i++) {
                     arr[i] = arr[i+1];
                 }
                 n--;
-                cout << "Element deleted." << endl;
-            }
-            break;
-        }
+                cout << "Element deleted." << endl;}
+            break;}
 
         case 5: { 
             int key, found = -1;
