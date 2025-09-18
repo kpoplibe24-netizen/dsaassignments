@@ -29,10 +29,6 @@ void insertAtEnd(int value) {
 }
 
 void insertBefore(int key, int value) {
-    if (head == nullptr) {
-        cout << "list is empty\n";
-        return;
-    }
     if (head->data == key) {
         insertAtBeginning(value);
         return;
@@ -41,12 +37,8 @@ void insertBefore(int key, int value) {
     while (temp->next != nullptr && temp->next->data != key) {
         temp = temp->next;
     }
-    if (temp->next == nullptr) {
-        cout << "Key not found!\n";
-    } else {
-        Node* newnode = new Node{value, temp->next};
-        temp->next = newnode;
-    }
+    Node* newnode = new Node{value, temp->next};
+    temp->next = newnode;
 }
 
 void insertAfter(int key, int value) {
@@ -54,12 +46,8 @@ void insertAfter(int key, int value) {
     while (temp != nullptr && temp->data != key) {
         temp = temp->next;
     }
-    if (temp == nullptr) {
-        cout << "Key not found!\n";
-    } else {
-        Node* newnode = new Node{value, temp->next};
-        temp->next = newnode;
-    }
+    Node* newnode = new Node{value, temp->next};
+    temp->next = newnode;
 }
 
 void deleteBeginning() {
