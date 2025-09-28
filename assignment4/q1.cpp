@@ -1,115 +1,116 @@
-#include <iostream>
+#include<iostream>
+#include<cstring>
 using namespace std;
-
-#define MAX 5  
-
-struct Queue {
-    int arr[MAX];
-    int front;
-    int rear;
+// using arrays
+#define MAX 100
+class Queue{
+    public:
+    int arr[MAX],front,rear,size;
+    Queue(){
+        front=0;
+        rear=0;
+        size=MAX;
+    }
+    void enqueue(int data){
+        if(rear==size){
+            cout<<"queue is full "<<endl;
+        }
+        else{
+            arr[rear]=data;
+            rear++;
+        }
+    }
+    int dequeue(){
+        if(front==rear){
+            return -1;
+        }
+        else{
+            arr[front]=-1;
+            int ans=arr[front];
+            front++;
+            if(front==rear){
+                front=0;
+                rear=0;
+            }
+            return ans;
+        }
+    }
+    int peek(){
+        if(front==rear){
+            return -1;
+        }
+        else{
+            int ans=arr[front];
+            return ans;
+        }
+    }
+    bool isempty(){
+        if(front==rear) return true;
+        else return false;
+    }
+    void display(){
+        if(isempty()){
+            cout<<"queue is empty"<<endl;
+        }
+        else{
+            // cout<<"Stack elements are: "<<endl;
+            // cout<<"top->";
+            for(int i=front;i<rear;i++){
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
+        }
+    }
 };
-void initQueue(Queue &q) {
-    q.front = -1;
-    q.rear = -1;}
-
-bool isEmpty(Queue &q) {
-    return (q.front == -1 && q.rear == -1);}
-
-bool isFull(Queue &q) {
-    return (q.rear == MAX - 1);}
-
-void enqueue(Queue &q, int x) {
-    if (isFull(q)) {
-        cout << "Queue Overflow! Cannot insert " << x << endl;
-        return;}
-    if (isEmpty(q)) {
-        q.front = q.rear = 0;} 
-        else {
-        q.rear++;}
-    q.arr[q.rear] = x;
-    cout << x << " inserted into queue." << endl;}
-
-void dequeue(Queue &q) {
-    if (isEmpty(q)) {
-        cout << "Queue Underflow! Cannot remove." << endl;
-        return;
-    }
-    cout << q.arr[q.front] << " removed from queue." << endl;
-    if (q.front == q.rear) {
-        q.front = q.rear = -1; // Reset after last element
-    } else {
-        q.front++;
-    }
-}
-
-void peek(Queue &q) {
-    if (isEmpty(q)) {
-        cout << "Queue is empty." << endl;
-    } else {
-        cout << "Front element: " << q.arr[q.front] << endl;
-    }}
-
-void display(Queue &q) {
-    if (isEmpty(q)) {
-        cout << "Queue is empty." << endl;
-        return;
-    }
-    cout << "Queue elements: ";
-    for (int i = q.front; i <= q.rear; i++) {
-        cout << q.arr[i] << " ";
-    }
-    cout << endl;
-}
-
-int main() {
+int main(){
     Queue q;
-    initQueue(q);
-    int choice = -1, value;
-
+    int choice=-1,element;
     while (choice != 0) {
         cout << "\nQueue Menu\n";
         cout << "1. Enqueue\n";
         cout << "2. Dequeue\n";
         cout << "3. Peek\n";
-        cout << "4. Display\n";
-        cout << "5. Check if Empty\n";
-        cout << "6. Check if Full\n";
+        cout << "4. Check if Empty\n";
+        cout << "5. Display\n";
         cout << "0. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "Enter value to insert: ";
-            cin >> value;
-            enqueue(q, value);
+        
+        switch(choice){
+            case 1:
+            cout<<"enter the element: ";
+            cin>>element;
+            q.enqueue(element);
             break;
-        case 2:
-            dequeue(q);
+            
+            case 2:
+            q.dequeue();
             break;
-        case 3:
-            peek(q);
+            
+            case 3:
+            cout<<"the top element is "<<q.peek()<<endl;
             break;
-        case 4:
-            display(q);
+            
+            case 4:
+            if(q.isempty()){
+                cout<<"the queue is empty"<<endl;
+            }
+            else{
+                cout<<"the queue is not empty"<<endl;
+            }
             break;
-        case 5:
-            if (isEmpty(q))
-                cout << "Queue is empty." << endl;
-            else
-                cout << "Queue is not empty." << endl;
+            
+            case 5:
+            q.display();
             break;
-        case 6:
-            if (isFull(q))
-                cout << "Queue is full." << endl;
-            else
-                cout << "Queue is not full." << endl;
+            
+            case 0:
+            cout<<"exiting.. "<<endl;
             break;
-        case 0:
-            cout << "Exiting program..." << endl;
-            break;
-        default:
-            cout << "Invalid choice! Try again." << endl;
+            
+            default:
+            cout<<"invalid choice.. try again"<<endl;
         }
+        
     }
 }
