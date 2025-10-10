@@ -94,8 +94,6 @@ void insertBefore(Node* &tail, int element, int d){
 
     cout << "element " << element << " not found\n";
 }
-
-// delete a specific node
 void deleteNode(Node* &tail, int value){
     if(tail == NULL){
         cout << "list empty\n";
@@ -124,8 +122,6 @@ void deleteNode(Node* &tail, int value){
     delete curr;
     cout << "node " << value << " deleted\n";
 }
-
-// search
 void search(Node* tail, int value){
     if(tail == NULL){
         cout << "list empty\n";
