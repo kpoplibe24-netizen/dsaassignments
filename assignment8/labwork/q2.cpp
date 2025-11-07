@@ -7,8 +7,8 @@ public:
     Node* left;
     Node* right;
 
-    Node(int value) {
-        data = value;
+    Node(int d) {
+        data = d;
         left = right = NULL;
     }
 };
