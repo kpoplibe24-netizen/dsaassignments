@@ -7,41 +7,65 @@ public:
     Node* left;
     Node* right;
 
-    Node(int d) {
-        data = d;
-        left = right = NULL;
+    Node(int d){
+        data=d;
+        left=right=NULL;
     }
 };
 
-Node* insert(Node* root, int data){
+Node* insert(Node* root,int data){
     if(root==NULL){
-        root=new Node(data);
-        return root;
+        return new Node(data);
     }
-    if(data<root->data){
-        root->left=insert(root->left, data);
-    }
-    else if(root->right < data){
-        root->right=insert(root->right, data);
-    }
+    if(data<root->data)
+        root->left=insert(root->left,data);
+    else if(data>root->data)
+        root->right=insert(root->right,data);
     return root;
 }
-Node* searchR(Node* root, int key) {
-    if (root == NULL || root->data == key)
+
+Node* searchR(Node* root,int key){
+    if(root==NULL || root->data==key)
         return root;
-    if (key < root->data)
-        return searchR(root->left, key);
+    if(key<root->data)
+        return searchR(root->left,key);
     else
-        return searchR(root->right, key);
+        return searchR(root->right,key);
 }
-Node* searchI(Node* root, int key) {
-    while (root != NULL) {
-        if (root->data == key)
+
+Node* searchI(Node* root,int key){
+    while(root!=NULL){
+        if(root->data==key)
             return root;
-        else if (key < root->data)
-            root = root->left;
+        else if(key<root->data)
+            root=root->left;
         else
-            root = root->right;
+            root=root->right;
     }
     return NULL;
+}
+
+int main(){
+    Node* root=NULL;
+    int n,x;
+    cout<<"How many numbers to insert?";
+    cin>>n;
+    cout<<"Enter numbers:";
+    for(int i=0;i<n;i++){
+        cin>>x;
+        root=insert(root,x);
+    }
+
+    int key;
+    cout<<"Enter number to search:";
+    cin>>key;
+
+    Node* resR=searchR(root,key);
+    Node* resI=searchI(root,key);
+
+    if(resR) cout<<"Found"<<resR->data<<endl;
+    else cout<<"Not found"<<endl;
+
+    if(resI) cout<<"Found"<<resI->data<<endl;
+    else cout<<"Not found"<<endl;
 }
