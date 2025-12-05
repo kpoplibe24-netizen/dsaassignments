@@ -38,7 +38,7 @@ public:
         if(!heap.empty())heapifyDown(0);
     }
     int top(){
-        if(heap.empty())throw runtime_error("empty");
+        if(heap.empty()){ cout<<"heap is empty";
         return heap[0];
     }
     bool empty(){
