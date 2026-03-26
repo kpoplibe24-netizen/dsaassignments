@@ -25,6 +25,5 @@ int main(){
         if(hasha[B[i]]==1){
             cout<<B[i];
         }
-        B[i]=0;
     }
 }
